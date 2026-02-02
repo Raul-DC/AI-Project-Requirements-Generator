@@ -16,7 +16,7 @@ The workflow uses:
 
 > **Goal:** Show technical ability to orchestrate AI Agents, automate workflows, and structure output for tech delivery — without relying on paid APIs.
 
-![N8NWorkflow](https://github.com/user-attachments/assets/0c1cf036-a589-4571-af77-3ca6fbb3c404)
+![AboutTheProject](https://github.com/user-attachments/assets/25eff973-860b-4893-ba39-4be266906515)
 
 ---
 
@@ -31,6 +31,11 @@ The workflow uses:
 ---
 
 ## ⚙️ Workflow Description
+
+ Let's view the workflow and explain each node:
+
+![N8NWorkflow](https://github.com/user-attachments/assets/6c2150df-56e7-491b-816d-f7968d12b92f)
+
 
 ### 1️⃣ Webhook Node
 
@@ -113,12 +118,14 @@ Invoke-WebRequest `
   -Uri http://localhost:5678/webhook-test/project-brief `
   -Method POST `
   -ContentType "text/plain" `
-  -Body "We want a web platform where clients can submit support tickets and track their status."
+  -Body "We want a web platform where clients can submit support tickets y track their status." `
+  | Select-Object -ExpandProperty Content `
+  | Tee-Object -FilePath "C:\Users\User\Desktop\RHLoop notes\Proyectos\Proyecto 10 - N8N AI Agent\output.md"
 ```
 
 Input example:
 
-![InvokeRequestPowerShell](https://github.com/user-attachments/assets/27717622-e116-45e0-b0f6-930f44ca97b5)
+![InvokeRequestPowerShell](https://github.com/user-attachments/assets/d59c229a-adc8-45a7-a576-89cbddaa0cfb)
 
 N8N workflow executing a brief, showing the HTTP Request node processing the AI Agent response:
 
@@ -130,7 +137,9 @@ Final state of workflow execution, with all nodes marked as successfully execute
 
 Output example:
 
-![InvokeRequestResultPowerShell](https://github.com/user-attachments/assets/6179de27-3999-408c-bc8d-9f05cc531924)
+![InvokeRequestResultPowerShell](https://github.com/user-attachments/assets/30d20ce9-d3bf-4188-8832-1a1aabcdb160)
+
+![mdFile](https://github.com/user-attachments/assets/9daf53f9-0c75-43c8-9389-6de0cb83d646)
 
 ---
 
