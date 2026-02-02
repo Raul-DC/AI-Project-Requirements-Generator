@@ -1,8 +1,12 @@
 # AI Project Requirements Generator
 
+<img width="1024" height="1536" alt="projectimage" src="https://github.com/user-attachments/assets/cefaf09f-cabc-462c-87b6-0ed20d56b228" />
+
+
 ## 🚀 Overview
 
 This project demonstrates a **proof-of-concept workflow** that transforms a **project brief in natural language** into a **structured technical requirements document**.  
+
 The workflow uses:
 
 - **N8N** (local workflow automation)
@@ -11,6 +15,8 @@ The workflow uses:
 - **Markdown output** ready for GitHub repositories
 
 > **Goal:** Show technical ability to orchestrate AI Agents, automate workflows, and structure output for tech delivery — without relying on paid APIs.
+
+![N8NWorkflow](https://github.com/user-attachments/assets/0c1cf036-a589-4571-af77-3ca6fbb3c404)
 
 ---
 
@@ -24,25 +30,6 @@ The workflow uses:
 
 ---
 
-## 🏗 Repository Structure
-
-```text
-AI-Project-Requirements-Generator/
-├── README.md
-├── workflows/
-│   └── AI_Project_Requirements_Generator.json
-├── scripts/
-│   └── test_request.ps1
-├── screenshots/
-│   ├── n8n_workflow.png
-│   ├── webhook_config.png
-│   ├── http_request_node.png
-│   └── sample_output.png
-└── LICENSE
-````
-
----
-
 ## ⚙️ Workflow Description
 
 ### 1️⃣ Webhook Node
@@ -53,9 +40,7 @@ Receives the **project brief** as POST request.
 * **Path:** `project-brief`
 * **Authentication:** None
 
-![webhook\_config](screenshots/webhook_config.png)
-
-> *Captura sugerida:* muestra la configuración del nodo Webhook en N8N (HTTP Method y Path).
+![WebhookNodeConfig](https://github.com/user-attachments/assets/3d545e2c-7909-4215-b33e-01a1b3fac98d)
 
 ---
 
@@ -68,9 +53,8 @@ Sends the brief to **Ollama** local LLM.
 * **Headers:** `Content-Type: application/json`
 * **Body:** JSON containing `model` and `prompt`
 
-![http\_request\_node](screenshots/http_request_node.png)
+![HttpRequestNodeConfig](https://github.com/user-attachments/assets/7f08797a-c982-42ee-9339-9be96c980e64)
 
-> *Captura sugerida:* nodo HTTP Request con body y headers configurados.
 
 ---
 
@@ -81,9 +65,7 @@ Returns the **Markdown output** from Ollama.
 * **Response Type:** Text
 * **Response Body:** `{{ $json.response }}`
 
-![n8n\_workflow](screenshots/n8n_workflow.png)
-
-> *Captura sugerida:* todo el workflow en el canvas de N8N mostrando la conexión Webhook → HTTP Request → Respond to Webhook.
+![RespondToWebhookNodeConfig](https://github.com/user-attachments/assets/a7f61adb-2fee-48ff-a4ca-64b36c6810de)
 
 ---
 
@@ -101,9 +83,7 @@ Invoke-WebRequest `
 
 Output example:
 
-![sample\_output](screenshots/sample_output.png)
-
-> *Captura sugerida:* resultado Markdown generado por el AI Agent.
+![InvokeRequestPowerShell](https://github.com/user-attachments/assets/5c2e91c3-92a6-4394-993f-d652396bc948)
 
 ---
 
