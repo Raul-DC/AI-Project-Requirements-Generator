@@ -1,0 +1,102 @@
+{
+  "name": "AI Project Requirements Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "project-brief",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bf225fe4-0b30-47c6-8009-4a20ff02421d",
+      "name": "Webhook",
+      "webhookId": "a0f32fd1-6dea-4089-853d-50cc06d0df03"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:11434/api/generate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"phi\",\n  \"prompt\": \"You are an expert software engineer and digital transformation consultant.\\n\\nYour task is to transform the following project brief into a structured technical requirements document.\\n\\nIf the brief is ambiguous or incomplete:\\n- Explicitly state assumptions\\n- Do not invent critical details\\n\\nReturn the result in Markdown with the following sections:\\n\\n# Project Title\\n\\n## Executive Summary\\n\\n## Assumptions\\n\\n## User Stories\\n\\n## Proposed API Endpoints\\n\\n## Suggested Project Structure\\n\\nProject brief:\\n{{ $json }}\",\n  \"stream\": false\n}\n",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "71142592-a838-4e5c-808a-77628a5e1c0e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.response }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3ae28c6a-03a7-472b-a1e6-cdf979b3202b",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "d71ae655-1415-4180-9ac4-711f7b83463c",
+  "meta": {
+    "instanceId": "ba0b7e8a46aa736769045197fb14c917c5cddd9158d920c22a10c4d22a64bc2d"
+  },
+  "id": "6F17w8MQms38gEfa7TgS6",
+  "tags": []
+}
