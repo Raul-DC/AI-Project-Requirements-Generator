@@ -69,9 +69,44 @@ Returns the **Markdown output** from Ollama.
 
 ---
 
+## 🖥️ Running the Workflow
+
+To run the project locally, open **two PowerShell windows**:
+
+1. **PowerShell 1:** Start N8N editor
+```powershell
+npx n8n
+```
+
+![NPXN8NPowerShell](https://github.com/user-attachments/assets/02e0b424-d213-4926-8eed-572f9011db33)
+
+> Open your browser at [http://localhost:5678](http://localhost:5678) to access the workflow editor.
+
+![N8NPersonalTab](https://github.com/user-attachments/assets/54297129-2c27-4ef2-8da7-f9079e05f62a)
+
+2. **PowerShell 2:** Start the AI Agent (`phi` LLM)
+
+```powershell
+ollama run phi
+```
+
+![ollamaRunPowerShell](https://github.com/user-attachments/assets/c7e57b15-2b37-47fd-bcfa-054d0b46c611)
+
+> Keep both windows open while testing the workflow.
+
+---
+
 ## 🧩 Example Execution
 
-Send a test brief using PowerShell:
+Press the "Execute Buttom" on the workflow:
+
+![N8NExecuteWorkflowButtom](https://github.com/user-attachments/assets/73d6b5d9-a34e-4a8a-b510-da9cc79d98d0)
+
+The N8N will look like this:
+
+![N8NWaitingTriggerEvent](https://github.com/user-attachments/assets/25aa2072-59dc-4afc-b36c-01d3902b09d9)
+
+Send a test brief using PowerShell (You must open a 3rd PowerShell window):
 
 ```powershell
 Invoke-WebRequest `
@@ -81,9 +116,21 @@ Invoke-WebRequest `
   -Body "We want a web platform where clients can submit support tickets and track their status."
 ```
 
+Input example:
+
+![InvokeRequestPowerShell](https://github.com/user-attachments/assets/27717622-e116-45e0-b0f6-930f44ca97b5)
+
+N8N workflow executing a brief, showing the HTTP Request node processing the AI Agent response:
+
+![N8NExecutingWorkflow](https://github.com/user-attachments/assets/9e97f74d-0e5e-4adb-8b04-791d7bb00ac9)
+
+Final state of workflow execution, with all nodes marked as successfully executed:
+
+![N8NExecutedWorkflow](https://github.com/user-attachments/assets/09011b11-ce55-4c82-9575-edff1d094f19)
+
 Output example:
 
-![InvokeRequestPowerShell](https://github.com/user-attachments/assets/5c2e91c3-92a6-4394-993f-d652396bc948)
+![InvokeRequestResultPowerShell](https://github.com/user-attachments/assets/6179de27-3999-408c-bc8d-9f05cc531924)
 
 ---
 
